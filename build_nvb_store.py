@@ -1,0 +1,3878 @@
+import os
+
+def generate_nvb_html():
+    out_path = os.path.join(os.path.dirname(__file__), "static", "index.html")
+    
+    html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVB Cult — Official Website | Dream • Plan • Achieve</title>
+    <meta name="application-name" content="NVB Cult">
+    <meta property="og:site_name" content="NVB Cult">
+    <meta property="og:title" content="NVB Cult — Official Website | Dream • Plan • Achieve">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NVB Cult">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+
+    
+    <!-- Google Fonts: Melodic Serif (Playfair Display), Classic Roman (Cinzel), Mechanical Monospace (Space Mono), Grotesque (Space Grotesk) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Classic Melodic Black & Gold Luxury Palette (Est. 2026) */
+            --bg-night: #09090c;        /* Velvet deep obsidian black */
+            --bg-canvas: #09090c;       /* Main canvas deep black */
+            --bg-canvas-alt: #0f0f15;   /* Secondary deep black/charcoal */
+            --bg-panel: #121218;        /* Panel surface dark */
+            --bg-panel-light: #161622;  /* Slightly elevated dark container */
+            --bg-card: #121218;         /* Card surface dark */
+            --bg-card-hover: #181824;   /* Card hover surface */
+            
+            /* Metallic Gold & Amber Gold Accents */
+            --gold: #d4af37;            /* Iconic metallic emblem gold */
+            --gold-vivid: #f59e0b;      /* Radiant vivid warm amber gold */
+            --gold-bright: #fbbf24;     /* Bright lustrous gold */
+            --gold-deep: #b45309;       /* Deep antique burnished gold */
+            --gold-dark: #78350f;       /* Deep dark bronze for borders/shadows */
+            --gold-champagne: rgba(212, 175, 55, 0.16);  /* Soft gold tint for badges & pills */
+            --gold-mist: rgba(212, 175, 55, 0.08);       /* Subtle warm gold highlight */
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            
+            /* High Contrast Text for Rich Black Canvas */
+            --text-light: #ffffff;      /* Pure crisp white */
+            --text-dark: #f3f4f6;       /* Crisp silver-white for crystal-clear readability */
+            --text-heading: #ffffff;    /* Pure radiant white for Roman titles */
+            --text-muted: #cbd5e1;      /* Light slate for readable descriptions */
+            --text-subtle: #94a3b8;     /* Muted slate for metadata */
+            --text-gold: #fbbf24;       /* Radiant gold text */
+            
+            /* Backward-compatibility aliases for existing rules */
+            --sky-blue: var(--gold);
+            --sky-blue-vivid: var(--gold-vivid);
+            --sky-blue-deep: var(--gold-deep);
+            --sky-ice: var(--gold-champagne);
+            --sky-ice-light: var(--gold-mist);
+            --cyan-glow: var(--gold-vivid);
+            --crimson: var(--gold);
+            --crimson-vivid: var(--gold-vivid);
+            --crimson-dark: var(--gold-deep);
+            --crimson-glow: var(--gold-glow);
+            --text-crimson: var(--gold-bright);
+            
+            /* Borders & Shadows */
+            --border-gold: 2px solid var(--gold);
+            --border-gold-light: 1.5px solid rgba(212, 175, 55, 0.45);
+            --border-dark: 2px solid #232330;
+            --border-sky: 2px solid var(--gold);
+            --border-crimson: 2px solid var(--gold);
+            
+            --shadow-gold: 4px 4px 0px var(--gold);
+            --shadow-gold-sm: 2px 2px 0px var(--gold);
+            --shadow-gold-lg: 6px 6px 0px var(--gold);
+            --shadow-deep: 4px 4px 0px #000000;
+            --shadow-sky: 4px 4px 0px var(--gold);
+            --shadow-red: 4px 4px 0px var(--gold);
+            --shadow-black: 5px 5px 0px #000000;
+            
+            --radius-classic: 4px;
+            --radius-pill: 9999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-canvas);
+            background-image: 
+                radial-gradient(rgba(212, 175, 55, 0.16) 1.2px, transparent 1.2px),
+                linear-gradient(180deg, #09090c 0%, #0d0d14 50%, #060608 100%);
+            background-size: 24px 24px, 100% 100%;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            letter-spacing: -0.2px;
+        }
+
+        /* Classic Melodic Typography Helpers */
+        .melody-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .melody-italic {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+        }
+        .classic-roman {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+        .mono-font {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        input, select, textarea {
+            font-family: inherit;
+            outline: none;
+        }
+
+        /* ==================== MARQUEE TICKER TAPE (BLACK & GOLD) ==================== */
+        .melodic-ticker-tape {
+            background: #000000;
+            color: #ffffff;
+            border-bottom: 2px solid var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 9px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            user-select: none;
+            position: relative;
+            z-index: 950;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+        }
+        .ticker-inner {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 18px;
+        }
+        .ticker-item span.red-badge, .ticker-item span.sky-badge, .ticker-item span.gold-badge {
+            color: #000000;
+            background: var(--gold-bright);
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-weight: 800;
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .ticker-item span.gold-txt {
+            color: var(--gold-bright);
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ==================== OWNER CONTROL TOP BAR ==================== */
+        #owner-top-bar {
+            display: none;
+            background: #000000;
+            color: var(--text-dark);
+            padding: 8px 24px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+        .owner-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #14141c;
+            color: var(--gold-bright);
+            padding: 4px 12px;
+            border: 1.5px solid var(--gold);
+            border-radius: var(--radius-classic);
+            font-weight: 700;
+        }
+        .owner-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .owner-btn {
+            background: var(--gold);
+            color: #000000;
+            padding: 5px 14px;
+            border: 1.5px solid var(--gold-bright);
+            box-shadow: 2px 2px 0px #000000;
+            border-radius: var(--radius-classic);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+            transition: all 0.15s;
+        }
+        .owner-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold-bright);
+            background: var(--gold-bright);
+            color: #000000;
+        }
+        .owner-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .owner-btn-danger {
+            background: #7f1d1d;
+            color: #fecaca;
+            border-color: #ef4444;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .owner-btn-danger:hover {
+            background: #ef4444;
+            color: #ffffff;
+            box-shadow: 3px 3px 0px var(--gold);
+        }
+
+        /* ==================== CLASSIC SITE HEADER (BLACK & GOLD) ==================== */
+        .site-header {
+            background: rgba(10, 10, 14, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Brand Logo with User Emblem */
+        .brand-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            user-select: none;
+            padding: 4px 8px;
+            border-radius: var(--radius-classic);
+            transition: all 0.2s;
+        }
+        .brand-logo-wrap:hover {
+            transform: translate(-1px, -1px);
+        }
+        .brand-logo-img {
+            height: 52px;
+            width: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.4), 2px 2px 0px #000000;
+            background: #000000;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            line-height: 1.0;
+            text-transform: uppercase;
+        }
+        .brand-title span.red, .brand-title span.sky, .brand-title span.gold {
+            color: var(--gold-bright);
+        }
+        .brand-subtitle-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 3px;
+        }
+        .brand-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 11px;
+            color: var(--gold-bright);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .cult-badge-sticker {
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--gold-bright);
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 1px 6px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        /* Navigation Links */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-link {
+            padding: 8px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+            background: #14141c;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            border-radius: var(--radius-classic);
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold);
+            background: #181824;
+        }
+        .nav-link.active {
+            color: #000000;
+            background: var(--gold);
+            border-color: var(--gold-bright);
+            box-shadow: 3px 3px 0px #000000;
+            font-weight: 800;
+        }
+
+        /* Search Input */
+        .header-search {
+            flex: 1;
+            max-width: 340px;
+            position: relative;
+        }
+        .search-input-wrap {
+            display: flex;
+            align-items: center;
+            background: #121218;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 6px 12px;
+            transition: all 0.15s;
+        }
+        .search-input-wrap:focus-within {
+            border-color: var(--gold);
+            box-shadow: 3px 3px 0px var(--gold);
+        }
+        .search-prompt {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 12px;
+            color: var(--gold-bright);
+            margin-right: 8px;
+            font-weight: 700;
+        }
+        .header-search input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .header-search input::placeholder {
+            color: #94a3b8;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+        }
+        .clear-search-btn {
+            display: none;
+            color: var(--gold-bright);
+            cursor: pointer;
+            padding: 2px;
+            font-weight: 900;
+        }
+
+        
+        .backend-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 12px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid rgba(34, 197, 94, 0.45);
+            background: rgba(34, 197, 94, 0.12);
+            color: #22c55e;
+            box-shadow: 2px 2px 0px #000000;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .backend-status-pill:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px rgba(34, 197, 94, 0.5);
+        }
+        .backend-status-pill.disconnected {
+            border-color: rgba(239, 68, 68, 0.45);
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+        .status-pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulseGlow 1.4s infinite;
+        }
+        .backend-status-pill.disconnected .status-pulse-dot {
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+    
+        
+        .pwa-install-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%) !important;
+            color: #000000 !important;
+            font-weight: 800 !important;
+            border: 1.5px solid var(--gold-bright) !important;
+            box-shadow: 2px 2px 0px #000000 !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s;
+        }
+        .pwa-install-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold-bright) !important;
+            background: var(--gold-bright) !important;
+        }
+    
+        /* Header Right Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-icon-btn {
+            background: #14141c;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            padding: 8px 12px;
+            height: 38px;
+            border-radius: var(--radius-classic);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.15s;
+        }
+        .header-icon-btn:hover {
+            border-color: var(--gold);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold);
+            color: var(--gold-bright);
+        }
+        .header-icon-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .badge-counter {
+            background: var(--gold);
+            color: #000000;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            min-width: 18px;
+            height: 18px;
+            border: 1px solid var(--gold-bright);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        .auth-cta-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: var(--gold);
+            color: #000000;
+            border: 1.5px solid var(--gold-bright);
+            box-shadow: 3px 3px 0px #000000;
+            transition: all 0.15s;
+        }
+        .auth-cta-btn:hover {
+            background: var(--gold-bright);
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--gold);
+        }
+        .auth-cta-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .auth-cta-btn.logged-in {
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--gold-bright);
+            border-color: var(--gold);
+        }
+
+        /* ==================== MELODIC HERO SHOWCASE (BLACK & GOLD) ==================== */
+        .hero-banner {
+            background: linear-gradient(135deg, #09090c 0%, #15131e 50%, #0c0b12 100%);
+            border-bottom: 2px solid var(--gold);
+            padding: 56px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 48px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-track-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #14141c;
+            color: var(--gold-bright);
+            border: 1.5px solid var(--gold);
+            padding: 4px 12px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            box-shadow: 2px 2px 0px var(--gold);
+        }
+        .hero-vinyl-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--gold-vivid);
+            animation: pulseGlow 1.8s infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.8); opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 54px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero-title span.melody {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            text-transform: none;
+            color: var(--gold-bright);
+            text-shadow: 0 0 24px rgba(212, 175, 55, 0.45);
+        }
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 18px;
+            color: var(--gold-bright);
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .hero-desc {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 560px;
+        }
+
+        .hero-motto-strip {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #14141c;
+            border: 1.5px solid var(--gold);
+            padding: 8px 18px;
+            border-radius: var(--radius-classic);
+            box-shadow: 3px 3px 0px var(--gold);
+            margin-bottom: 28px;
+        }
+        .motto-text {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+        }
+        .motto-sep {
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        /* Duo Portal Gateway Cards */
+        .hero-categories-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .hero-card {
+            background: #121218;
+            border: 2px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 5px 5px 0px #000000, 2px 2px 0px var(--gold);
+            border-radius: var(--radius-classic);
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gold);
+            transition: width 0.2s;
+        }
+        .hero-card:hover {
+            transform: translate(-3px, -3px);
+            border-color: var(--gold);
+            box-shadow: 7px 7px 0px var(--gold), 0 0 20px rgba(212, 175, 55, 0.2);
+            background: #181824;
+        }
+        .hero-card:hover::before {
+            width: 8px;
+        }
+        .hero-card:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--gold);
+        }
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .hero-card-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+        .hero-card-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border: 1px solid var(--gold);
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--gold-bright);
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .hero-card-name {
+            font-family: 'Cinzel', serif;
+            font-size: 21px;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .hero-card-sub {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .hero-card-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold-bright);
+            align-self: flex-start;
+        }
+        .hero-card:hover .hero-card-count {
+            border-color: var(--gold-bright);
+            color: #000000;
+            background: var(--gold);
+        }
+
+        /* ==================== DEDICATED NVB COMPANY MANIFESTO SECTION (BLACK & GOLD) ==================== */
+        .company-story-section {
+            background: #0c0c12;
+            border-bottom: 2px solid var(--gold);
+            padding: 64px 24px;
+            position: relative;
+        }
+        .company-story-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-header-block {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 48px auto;
+        }
+        .section-pretitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        .section-title span.melody {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+        .section-sub {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .company-story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            align-items: center;
+            background: #111118;
+            border: 2px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 6px 6px 0px #000000, 2px 2px 0px var(--gold);
+            border-radius: var(--radius-classic);
+            padding: 40px;
+        }
+        .company-emblem-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: linear-gradient(180deg, #0a0a0e 0%, #13131b 100%);
+            border: 1.5px solid var(--gold);
+            box-shadow: 4px 4px 0px var(--gold);
+            border-radius: var(--radius-classic);
+        }
+        .company-large-logo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.45);
+            margin: 0 auto 20px auto;
+            display: block;
+            background: #000000;
+        }
+        .company-motto-banner {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+        }
+        .company-tag-sub {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .company-narrative-text p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .company-narrative-text strong {
+            color: #ffffff;
+        }
+        .company-narrative-text span.gold {
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+        .company-narrative-text span.red, .company-narrative-text span.sky {
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .pillar-card {
+            background: #161622;
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
+            border-top: 3px solid var(--gold);
+            padding: 16px;
+            border-radius: var(--radius-classic);
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.2s;
+        }
+        .pillar-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold);
+            background: #1c1c2a;
+            box-shadow: 4px 4px 0px var(--gold);
+        }
+        .pillar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .pillar-desc {
+            font-size: 12px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* ==================== STORE CATALOG CONTAINER ==================== */
+        .store-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 44px 24px 80px 24px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Controls Bar */
+        .catalog-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+        }
+        .category-tabs-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cat-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #14141c;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .cat-tab:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold);
+            background: #1a1a26;
+        }
+        .cat-tab.active {
+            background: var(--gold);
+            border-color: var(--gold-bright);
+            color: #000000;
+            box-shadow: 3px 3px 0px #000000;
+            font-weight: 800;
+        }
+
+        .sort-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sort-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+        }
+        .sort-select {
+            background: #14141c;
+            border: 1.5px solid var(--gold);
+            box-shadow: 2px 2px 0px #000000;
+            padding: 8px 14px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Subcategory Filter Chips */
+        .subcat-chips-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .subcat-chip {
+            background: #14141c;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 2px 2px 0px #000000;
+            padding: 6px 14px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .subcat-chip:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            transform: translate(-1px, -1px);
+            background: #1a1a26;
+        }
+        .subcat-chip.active {
+            background: var(--gold);
+            border-color: var(--gold-bright);
+            color: #000000;
+            font-weight: 800;
+        }
+
+        /* ==================== SPECIMEN PRODUCT GRID & CARDS ==================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: #121218;
+            border: 2px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 5px 5px 0px #000000, 2px 2px 0px var(--gold);
+            border-radius: var(--radius-classic);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translate(-3px, -3px);
+            border-color: var(--gold);
+            box-shadow: 6px 6px 0px var(--gold), 0 0 20px rgba(212, 175, 55, 0.2);
+            background: #161622;
+        }
+
+        .card-top-strip {
+            background: #09090d;
+            border-bottom: 1.5px solid rgba(212, 175, 55, 0.3);
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .card-sku-tag {
+            color: var(--gold-bright);
+        }
+        .card-drop-tag {
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--gold-bright);
+            padding: 1px 6px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+        }
+
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            background: #0a0a0e;
+            overflow: hidden;
+            cursor: pointer;
+            border-bottom: 1.5px solid rgba(212, 175, 55, 0.3);
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-badges {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 5;
+        }
+        .badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 2px;
+            border: 1px solid var(--gold);
+            box-shadow: 2px 2px 0px #000000;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .badge-category-elec {
+            background: #14141c;
+            color: var(--gold-bright);
+            border-color: var(--gold);
+        }
+        .badge-category-tee {
+            background: var(--gold);
+            color: #000000;
+            font-weight: 800;
+            border-color: var(--gold-bright);
+        }
+        .badge-discount {
+            background: #14141c;
+            color: var(--gold-bright);
+            border-color: var(--gold);
+        }
+
+        .card-wish-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #121218;
+            border: 1.5px solid var(--gold);
+            box-shadow: 2px 2px 0px #000000;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-classic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: var(--gold-bright);
+            transition: all 0.15s;
+        }
+        .card-wish-btn:hover {
+            background: var(--gold);
+            color: #000000;
+            transform: translate(-1px, -1px);
+        }
+        .card-wish-btn.active {
+            background: var(--gold);
+            color: #000000;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            background: #121218;
+        }
+        .card-category-name {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 12px;
+            color: var(--gold-bright);
+            margin-bottom: 4px;
+        }
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #ffffff;
+            margin-bottom: 10px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        .card-title:hover {
+            color: var(--gold-bright);
+        }
+
+        .card-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            margin-bottom: 14px;
+        }
+        .stars {
+            color: var(--gold-bright);
+            letter-spacing: 1px;
+        }
+        .reviews-count {
+            color: #94a3b8;
+        }
+
+        .card-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-top: auto;
+            margin-bottom: 18px;
+        }
+        .price-current {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 800;
+            color: #000000;
+            background: var(--gold);
+            padding: 2px 8px;
+            border: 1px solid var(--gold-bright);
+            border-radius: 2px;
+        }
+        .price-mrp {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .price-off {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold-bright);
+        }
+
+        .card-action-btns {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+        }
+        .btn-add-cart {
+            background: var(--gold);
+            color: #000000;
+            border: 1.5px solid var(--gold-bright);
+            box-shadow: 2px 2px 0px #000000;
+            padding: 10px 14px;
+            border-radius: var(--radius-classic);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.15s;
+        }
+        .btn-add-cart:hover {
+            background: var(--gold-bright);
+            color: #000000;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px var(--gold);
+        }
+        .btn-add-cart:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .btn-quick-view {
+            background: #14141c;
+            border: 1.5px solid var(--gold);
+            box-shadow: 2px 2px 0px #000000;
+            width: 42px;
+            border-radius: var(--radius-classic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-bright);
+            transition: all 0.15s;
+        }
+        .btn-quick-view:hover {
+            border-color: var(--gold-bright);
+            background: #1e1e2c;
+            color: var(--gold-bright);
+        }
+
+        /* Empty state container (Black with Gold Dash & Shadow) */
+        .empty-archive-box {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px 24px;
+            background: #121218;
+            border: 2px dashed var(--gold);
+            box-shadow: 6px 6px 0px #000000, 2px 2px 0px var(--gold);
+            border-radius: var(--radius-classic);
+        }
+
+        /* ==================== OWNER / ADMIN PORTAL VIEW ==================== */
+        #owner-portal-view {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 36px 24px 80px 24px;
+            width: 100%;
+        }
+        .portal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        .portal-title-block h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+        .portal-title-block p {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--gold-bright);
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        .portal-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .portal-tab {
+            padding: 10px 18px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #14141c;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 3px 3px 0px #000000;
+            border-radius: var(--radius-classic);
+            cursor: pointer;
+            color: #ffffff;
+            transition: all 0.15s;
+        }
+        .portal-tab.active {
+            background: var(--gold);
+            border-color: var(--gold-bright);
+            color: #000000;
+            box-shadow: 3px 3px 0px #000000;
+            font-weight: 800;
+        }
+
+        .portal-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: #121218;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-top: 3px solid var(--gold);
+            box-shadow: 3px 3px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 18px;
+        }
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 6px;
+        }
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Upload Form */
+        .upload-section-card {
+            background: #121218;
+            border: 2px solid var(--gold);
+            box-shadow: 6px 6px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 28px;
+        }
+        .form-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+        .form-subheading {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--gold-bright);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        .upload-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        .form-group label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #cbd5e1;
+        }
+        .form-control {
+            background: #161622;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #ffffff;
+            transition: all 0.15s;
+        }
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 3px 3px 0px var(--gold);
+        }
+        .dropzone-box {
+            border: 2px dashed var(--gold);
+            background: #0f0f16;
+            border-radius: var(--radius-classic);
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #ffffff;
+        }
+        .dropzone-box:hover {
+            background: #151522;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        }
+        .preview-img-box {
+            margin-top: 10px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            background: #161622;
+            border: 1.5px solid var(--gold);
+            padding: 8px 12px;
+            border-radius: var(--radius-classic);
+        }
+        .preview-thumb {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+        }
+
+        .btn-submit-product {
+            background: var(--gold);
+            color: #000000;
+            border: 1.5px solid var(--gold-bright);
+            box-shadow: 4px 4px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 14px 24px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.15s;
+        }
+        .btn-submit-product:hover {
+            background: var(--gold-bright);
+            color: #000000;
+            transform: translate(-1px, -1px);
+            box-shadow: 5px 5px 0px var(--gold);
+        }
+        .btn-submit-product:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        /* Inventory & Order Tables */
+        .inventory-table-wrap {
+            background: #121218;
+            border: 2px solid var(--gold);
+            box-shadow: 6px 6px 0px #000000;
+            border-radius: var(--radius-classic);
+            overflow-x: auto;
+        }
+        .inv-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+        .inv-table th {
+            background: #09090d;
+            border-bottom: 2px solid var(--gold);
+            padding: 12px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+        }
+        .inv-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #1f1f2e;
+            vertical-align: middle;
+            color: #e2e8f0;
+        }
+        .inv-table tr:hover {
+            background: #181824;
+        }
+        .inv-prod-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .inv-prod-thumb {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border: 1.5px solid var(--gold);
+            border-radius: 2px;
+        }
+        .inv-stock-stepper {
+            display: inline-flex;
+            align-items: center;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: var(--radius-classic);
+            background: #161622;
+        }
+        .inv-stock-btn {
+            background: none;
+            padding: 4px 10px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .inv-stock-btn:hover {
+            background: var(--gold);
+            color: #000000;
+        }
+        .inv-stock-num {
+            padding: 4px 8px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            border-left: 1px solid rgba(212, 175, 55, 0.4);
+            border-right: 1px solid rgba(212, 175, 55, 0.4);
+            min-width: 32px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        /* ==================== CLASSIC MODALS & DRAWERS (BLACK & GOLD) ==================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-card {
+            background: #121218;
+            border: 2px solid var(--gold);
+            box-shadow: 8px 8px 0px #000000, 3px 3px 0px var(--gold);
+            border-radius: var(--radius-classic);
+            max-width: 460px;
+            width: 100%;
+            overflow: hidden;
+            animation: modalPop 0.2s ease-out;
+        }
+        .product-modal-card {
+            max-width: 820px;
+        }
+        @keyframes modalPop {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-header {
+            background: #0a0a0f;
+            border-bottom: 2px solid var(--gold);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+        .modal-close-btn {
+            background: #161622;
+            border: 1.5px solid var(--gold);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .modal-close-btn:hover {
+            background: var(--gold);
+            color: #000000;
+        }
+        .modal-body {
+            padding: 24px;
+            background: #121218;
+            color: #e2e8f0;
+        }
+
+        /* Product Details Modal Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 28px;
+        }
+        .details-main-img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            box-shadow: 4px 4px 0px #000000, 2px 2px 0px var(--gold);
+            border-radius: 2px;
+            background: #0a0a0e;
+        }
+        .details-thumbs {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .details-thumb {
+            width: 54px;
+            height: 54px;
+            object-fit: cover;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+        }
+
+        /* Cart Drawer */
+        .cart-drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 440px;
+            height: 100%;
+            background: #101016;
+            border-left: 2px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -8px 0px 30px rgba(0, 0, 0, 0.9);
+            animation: slideDrawer 0.25s ease-out;
+        }
+        @keyframes slideDrawer {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(0); }
+        }
+        .cart-header {
+            background: #0a0a0f;
+            border-bottom: 2px solid var(--gold);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cart-items-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: #101016;
+        }
+        .cart-item-card {
+            display: grid;
+            grid-template-columns: 64px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 2px 2px 0px #000000;
+            padding: 10px;
+            border-radius: var(--radius-classic);
+            background: #161622;
+        }
+        .cart-item-thumb {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border: 1px solid var(--gold);
+        }
+        .cart-footer {
+            border-top: 2px dashed var(--gold);
+            background: #0a0a0f;
+            padding: 20px;
+        }
+
+        /* ==================== CULT AI ASSISTANT (BLACK & GOLD) ==================== */
+        .ai-fab-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--gold);
+            color: #000000;
+            border: 2px solid var(--gold-bright);
+            box-shadow: 4px 4px 0px #000000;
+            border-radius: var(--radius-classic);
+            padding: 12px 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            z-index: 1500;
+            transition: all 0.2s;
+        }
+        .ai-fab-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--gold);
+            background: var(--gold-bright);
+            color: #000000;
+        }
+        .ai-fab-pulse {
+            width: 10px;
+            height: 10px;
+            background: #000000;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold-bright);
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        .ai-chat-window {
+            display: none;
+            position: fixed;
+            bottom: 84px;
+            right: 24px;
+            width: 420px;
+            max-width: calc(100vw - 48px);
+            height: 580px;
+            max-height: calc(100vh - 120px);
+            background: #0f0f15;
+            color: #ffffff;
+            border: 2px solid var(--gold);
+            box-shadow: 8px 8px 0px #000000, 3px 3px 0px var(--gold);
+            border-radius: var(--radius-classic);
+            z-index: 1500;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalPop 0.2s ease-out;
+        }
+        .ai-chat-header {
+            background: #000000;
+            border-bottom: 2px solid var(--gold);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--gold-bright);
+        }
+        .ai-header-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ai-chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #09090d;
+        }
+        .ai-bubble {
+            padding: 12px 14px;
+            font-size: 13px;
+            line-height: 1.6;
+            border-radius: var(--radius-classic);
+            max-width: 88%;
+            word-wrap: break-word;
+        }
+        .ai-bubble-bot {
+            background: #14141e;
+            color: #e2e8f0;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-left: 3px solid var(--gold);
+            align-self: flex-start;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .ai-bubble-user {
+            background: var(--gold);
+            color: #000000;
+            border: 1px solid var(--gold-bright);
+            align-self: flex-end;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .ai-suggestions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .ai-chip {
+            background: #161622;
+            color: var(--gold-bright);
+            border: 1px solid var(--gold);
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 1px 1px 0px #000000;
+        }
+        .ai-chip:hover {
+            background: var(--gold);
+            color: #000000;
+            border-color: var(--gold-bright);
+            font-weight: 800;
+        }
+        .ai-rec-card {
+            background: #14141e;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 8px;
+            border-radius: 2px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .ai-rec-card:hover {
+            border-color: var(--gold);
+            background: #1a1a28;
+        }
+        .ai-rec-thumb {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border: 1px solid var(--gold);
+        }
+        .ai-typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: #14141e;
+            border: 1px solid var(--gold);
+            padding: 8px 14px;
+            border-radius: var(--radius-classic);
+            gap: 4px;
+        }
+        .ai-typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: aiPulse 1.2s infinite ease-in-out;
+        }
+        .ai-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .ai-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes aiPulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        .ai-chat-footer {
+            background: #0a0a0f;
+            border-top: 2px solid var(--gold);
+            padding: 10px 14px;
+            display: flex;
+            gap: 8px;
+        }
+        .ai-chat-input {
+            flex: 1;
+            background: #14141e;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: var(--radius-classic);
+            padding: 8px 12px;
+            color: #ffffff;
+            font-size: 13px;
+        }
+        .ai-chat-input:focus {
+            border-color: var(--gold);
+            box-shadow: 2px 2px 0px var(--gold);
+        }
+        .ai-send-btn {
+            background: var(--gold);
+            color: #000000;
+            border: 1.5px solid var(--gold-bright);
+            padding: 0 14px;
+            border-radius: var(--radius-classic);
+            font-weight: 800;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000000;
+        }
+        .ai-send-btn:hover {
+            background: var(--gold-bright);
+        }
+
+        /* Toast */
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: #000000;
+            color: var(--gold-bright);
+            border: 2px solid var(--gold);
+            box-shadow: 4px 4px 0px var(--gold);
+            padding: 10px 18px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: var(--radius-classic);
+            z-index: 3000;
+            display: none;
+            animation: modalPop 0.15s ease-out;
+        }
+
+        /* ==================== CLASSIC FOOTER (BLACK & GOLD) ==================== */
+        .site-footer {
+            background: #050508;
+            color: #ffffff;
+            border-top: 2px solid var(--gold);
+            padding: 44px 24px;
+            margin-top: auto;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .company-story-grid {
+                grid-template-columns: 1fr;
+            }
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-nav {
+                display: none;
+            }
+            .portal-stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .upload-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== MARQUEE TICKER TAPE (BLACK & GOLD) ==================== -->
+    <div class="melodic-ticker-tape">
+        <div class="ticker-inner">
+            <span class="ticker-item"><span class="gold-badge">MOTTO</span> DREAM • PLAN • ACHIEVE</span>
+            <span class="ticker-item">✦ 100% HEAVYWEIGHT 260 GSM FRENCH TERRY DROPS</span>
+            <span class="ticker-item">✦ NEXT VISION BRAND CULT // EST. 2026</span>
+            <span class="ticker-item">✦ OWNER-EXCLUSIVE SPECIMEN VAULT</span>
+            <span class="ticker-item">✦ CODE <span class="gold-badge">VISION10</span> FOR 10% OFF</span>
+            <span class="ticker-item"><span class="gold-badge">MOTTO</span> DREAM • PLAN • ACHIEVE</span>
+            <span class="ticker-item">✦ 100% HEAVYWEIGHT 260 GSM FRENCH TERRY DROPS</span>
+            <span class="ticker-item">✦ NEXT VISION BRAND CULT // EST. 2026</span>
+            <span class="ticker-item">✦ OWNER-EXCLUSIVE SPECIMEN VAULT</span>
+            <span class="ticker-item">✦ CODE <span class="gold-badge">VISION10</span> FOR 10% OFF</span>
+        </div>
+    </div>
+
+    <!-- ==================== OWNER CONTROL TOP BAR ==================== -->
+    <div id="owner-top-bar">
+        <div class="owner-badge">
+            <span style="font-size:14px;">👑</span>
+            <span>NVB CULT OWNER DASHBOARD ACTIVE</span>
+        </div>
+        <div class="owner-actions">
+            <button class="owner-btn" onclick="toggleStoreMode('upload')">+ Upload Drop</button>
+            <button class="owner-btn" onclick="toggleStoreMode('inventory')">Inventory Specimen</button>
+            <button class="owner-btn" onclick="toggleStoreMode('orders')">Freight Orders</button>
+            <button class="owner-btn" onclick="toggleStoreMode('store')">Customer View</button>
+            <button class="owner-btn owner-btn-danger" onclick="logoutAdmin()">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- ==================== CLASSIC SITE HEADER WITH EMBLEM ==================== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <!-- Brand Logo Emblem -->
+            <div class="brand-logo-wrap" onclick="filterByCategory('all')">
+                <img src="/static/nvb-logo.png" alt="NVB Cult Official Logo" class="brand-logo-img">
+                <div class="brand-text">
+                    <span class="brand-title">NVB <span class="gold">CULT</span></span>
+                    <div class="brand-subtitle-row">
+                        <span class="brand-subtitle">Dream • Plan • Achieve</span>
+                        <span class="cult-badge-sticker">OFFICIAL STORE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Melodic Navigation Links -->
+            <nav class="header-nav">
+                <div class="nav-link active" data-cat="all" onclick="filterByCategory('all')">All Archive</div>
+                <div class="nav-link" data-cat="T-Shirts" onclick="filterByCategory('T-Shirts')">👕 T-Shirts</div>
+                <div class="nav-link" data-cat="Electronics" onclick="filterByCategory('Electronics')">⚡ Electronics</div>
+                <div class="nav-link" onclick="scrollToManifesto()">👑 Manifesto</div>
+            </nav>
+
+            <!-- Search Console -->
+            <div class="header-search">
+                <div class="search-input-wrap">
+                    <span class="search-prompt">Scan:</span>
+                    <input type="text" id="store-search-input" placeholder="Search heavyweight tees, electronics..." oninput="handleSearch(this.value)">
+                    <span class="clear-search-btn" id="clear-search" onclick="clearSearch()">&times;</span>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="header-actions">
+                <!-- Live Backend Connection Status Indicator -->
+                <div class="backend-status-pill" id="backend-status-pill" onclick="checkBackendHealth(true)" title="Click to verify FastAPI Backend & SQLite connection">
+                    <span class="status-pulse-dot"></span>
+                    <span id="backend-status-text">CONNECTING...</span>
+                </div>
+    
+                
+                <button class="header-icon-btn pwa-install-btn" id="pwa-install-btn" onclick="triggerPwaInstall()" title="Install NVB Cult as Desktop/Mobile App">
+                    <span>📲 INSTALL APP</span>
+                </button>
+    
+                <button class="header-icon-btn" onclick="filterByWishlist()" title="Wishlist">
+                    <span style="color:var(--gold); font-size:14px;">♥</span>
+                    <span class="badge-counter" id="wishlist-count">0</span>
+                </button>
+
+                <button class="header-icon-btn" onclick="openCartDrawer()" title="Bag Archive">
+                    <span>BAG</span>
+                    <span class="badge-counter" id="cart-count">0</span>
+                </button>
+
+                <button class="auth-cta-btn" id="auth-cta-btn" onclick="handleAuthAction()">
+                    <span>OWNER ACCESS</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== CUSTOMER STOREFRONT VIEW ==================== -->
+    <div id="customer-store-view">
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <div class="hero-inner">
+                <div>
+                    <div class="hero-track-label">
+                        <span class="hero-vinyl-dot"></span>
+                        <span>SIDE A // TRACK 01: EST. 2026 TIMELESS ARCHIVE</span>
+                    </div>
+                    
+                    <h1 class="hero-title">NEXT VISION <br><span class="melody">Brand Cult</span></h1>
+                    <div class="hero-tagline">"Where pure melodic culture meets heavyweight streetwear and analog creator tech — Started in 2026."</div>
+                    
+                    <p class="hero-desc">We craft pure 260 GSM French Terry cotton streetwear that drapes with presence, alongside high-performance creator electronics built with analog precision. No fast fashion. No fragile junk. Just timeless vision.</p>
+                    
+                    <div class="hero-motto-strip">
+                        <span class="motto-text">DREAM</span>
+                        <span class="motto-sep">✦</span>
+                        <span class="motto-text">PLAN</span>
+                        <span class="motto-sep">✦</span>
+                        <span class="motto-text">ACHIEVE</span>
+                    </div>
+                </div>
+                
+                <div class="hero-categories-duo">
+                    <div class="hero-card tee-card" onclick="filterByCategory('T-Shirts')">
+                        <div class="hero-card-header">
+                            <div class="hero-card-icon">👕</div>
+                            <span class="hero-card-tag">SIDE A</span>
+                        </div>
+                        <div class="hero-card-name">T-Shirts Archive</div>
+                        <div class="hero-card-sub">260 GSM heavyweight French Terry, luxury Supima cotton & cyberpunk art pieces.</div>
+                        <span class="hero-card-count" id="hero-tee-count">0 DROPS • OWNER UPLOAD READY</span>
+                    </div>
+                    
+                    <div class="hero-card elec-card" onclick="filterByCategory('Electronics')">
+                        <div class="hero-card-header">
+                            <div class="hero-card-icon">⚡</div>
+                            <span class="hero-card-tag">SIDE B</span>
+                        </div>
+                        <div class="hero-card-name">Creator Electronics</div>
+                        <div class="hero-card-sub">Next-generation audio hardware, fast charging & creator gear.</div>
+                        <span class="hero-card-count" id="hero-elec-count">0 DROPS • OWNER UPLOAD READY</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== DEDICATED NVB COMPANY MANIFESTO & STORY ==================== -->
+        <section class="company-story-section" id="nvb-company-story">
+            <div class="company-story-inner">
+                <div class="section-header-block">
+                    <div class="section-pretitle">✦ OUR PHILOSOPHY & HERITAGE ✦</div>
+                    <h2 class="section-title">The Story Behind <span class="melody">NVB Cult</span></h2>
+                    <p class="section-sub">Next Vision Brand was founded upon a clear principle: creating timeless garments and hardware that carry uncompromised soul, melody, and durability — Started in 2026.</p>
+                </div>
+
+                <div class="company-story-grid">
+                    <div class="company-emblem-card">
+                        <img src="/static/nvb-logo.png" alt="NVB Cult Official Emblem" class="company-large-logo">
+                        <div class="company-motto-banner">DREAM • PLAN • ACHIEVE</div>
+                        <div class="company-tag-sub">The Trinity of Ambition</div>
+                    </div>
+
+                    <div class="company-narrative-text">
+                        <p>
+                            <strong>Next Vision Brand Cult (NVB Cult)</strong> was born as a rebellion against disposable, paper-thin fast fashion and fragile consumer electronics. Started in 2026, we set out to build an authentic collective dedicated to substance and weight, inspired by raw melodic energy, timeless posture, and iconic oversized silhouettes.
+                        </p>
+                        <p>
+                            The iconic <span class="gold">NVB Emblem</span> carries profound meaning:
+                            The <span class="gold">Golden Eye of Horus</span> embodies foresight, clarity of purpose, and artistic vision. The <span class="gold">Upward Arrow</span> represents unwavering momentum—soaring above ordinary standards.
+                        </p>
+                        
+                        <div class="pillars-grid">
+                            <div class="pillar-card">
+                                <div class="pillar-title">1. DREAM</div>
+                                <div class="pillar-desc">Envisioning elevated streetwear draped in 260 GSM French Terry that outlasts fleeting viral trends.</div>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-title">2. PLAN</div>
+                                <div class="pillar-desc">Disciplined craftsmanship: bio-washing, American Supima cotton, and creator electronics tuned with analog warmth.</div>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-title">3. ACHIEVE</div>
+                                <div class="pillar-desc">Direct-to-community drops with strict quality control and zero corporate dilution.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Catalog Section -->
+        <main class="store-container">
+            <!-- Controls Bar -->
+            <div class="catalog-controls">
+                <div class="category-tabs-group">
+                    <button class="cat-tab active" data-cat="all" onclick="filterByCategory('all')">ALL DROPS (<span id="total-count-badge">0</span>)</button>
+                    <button class="cat-tab" data-cat="T-Shirts" onclick="filterByCategory('T-Shirts')">👕 T-Shirts</button>
+                    <button class="cat-tab" data-cat="Electronics" onclick="filterByCategory('Electronics')">⚡ Electronics</button>
+                </div>
+
+                <div class="sort-wrap">
+                    <span class="sort-label">ARRANGE:</span>
+                    <select class="sort-select" id="sort-select" onchange="handleSort(this.value)">
+                        <option value="featured">Featured Archive</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="discount">Highest Discount</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Subcategory Filter Chips -->
+            <div class="subcat-chips-bar" id="subcat-chips-container"></div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Dynamically Rendered -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================== OWNER / ADMIN PORTAL VIEW ==================== -->
+    <div id="owner-portal-view">
+        <div class="portal-header">
+            <div class="portal-title-block">
+                <h1>NVB Cult // Owner Command Console</h1>
+                <p>Authentic Specimen Upload & Inventory Vault Management</p>
+            </div>
+            <div>
+                <button class="owner-btn" onclick="toggleStoreMode('store')">Back to Storefront</button>
+            </div>
+        </div>
+
+        <div class="portal-tabs">
+            <button class="portal-tab active" id="tab-btn-upload" onclick="switchPortalTab('upload')">+ Upload New Product</button>
+            <button class="portal-tab" id="tab-btn-inventory" onclick="switchPortalTab('inventory')">Active Inventory (<span id="portal-inv-count">0</span>)</button>
+            <button class="portal-tab" id="tab-btn-orders" onclick="switchPortalTab('orders')">Freight Orders (<span id="portal-orders-count">0</span>)</button>
+        </div>
+
+        <!-- Tab 1: Upload Product -->
+        <div id="portal-tab-upload">
+            <div class="upload-section-card">
+                <h2 class="form-heading">Upload Authentic NVB Drop</h2>
+                <p class="form-subheading">Upload authentic T-Shirts or Electronics directly into your catalog database</p>
+
+                <form id="owner-upload-form" onsubmit="handleProductUpload(event)">
+                    <div class="upload-form-grid">
+                        <div class="form-group full-width">
+                            <label>Product Title *</label>
+                            <input type="text" class="form-control" id="p-title" required placeholder="e.g. NVB Heavy French Terry Oversized Tee 260 GSM">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select class="form-control" id="p-category" required onchange="updateSubcatOptions(this.value)">
+                                <option value="T-Shirts">👕 T-Shirts</option>
+                                <option value="Electronics">⚡ Electronics</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Subcategory *</label>
+                            <select class="form-control" id="p-subcategory" required>
+                                <option value="Oversized Streetwear">Oversized Streetwear</option>
+                                <option value="Graphic & Art">Graphic & Art</option>
+                                <option value="Supima Plain">Supima Plain</option>
+                                <option value="Polo & Collared">Polo & Collared</option>
+                                <option value="Hoodies & Sweatshirts">Hoodies & Sweatshirts</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Selling Price (₹) *</label>
+                            <input type="number" class="form-control" id="p-price" required placeholder="e.g. 1499" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>MRP / Tag Price (₹) *</label>
+                            <input type="number" class="form-control" id="p-mrp" required placeholder="e.g. 2999" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock Units *</label>
+                            <input type="number" class="form-control" id="p-stock" required value="50" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>SKU Code</label>
+                            <input type="text" class="form-control" id="p-sku" placeholder="Auto-generated if empty, e.g. NVB-TEE-001">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Product Imagery (File Upload or Web URL) *</label>
+                            <div class="dropzone-box" onclick="document.getElementById('p-image-file').click()">
+                                <input type="file" id="p-image-file" accept="image/*" style="display:none;" onchange="handleImageFileSelect(event)">
+                                <div style="font-size:28px; margin-bottom:8px;">📷</div>
+                                <div style="font-family:'Space Mono', monospace; font-size:12px; font-weight:700; color:var(--gold-bright);">
+                                    CLICK TO CHOOSE IMAGE FROM YOUR COMPUTER
+                                </div>
+                                <div style="font-size:11px; color:#94a3b8; margin-top:4px;">Supports PNG, JPG, WebP</div>
+                            </div>
+                            <div class="preview-img-box" id="p-preview-box">
+                                <img src="" id="p-preview-img" class="preview-thumb" alt="Preview">
+                                <div style="flex:1;">
+                                    <div style="font-size:12px; font-weight:700; color:#ffffff;" id="p-preview-name">image.png</div>
+                                    <div style="font-size:10px; color:#22c55e; font-family:'Space Mono', monospace;">✓ READY FOR UPLOAD</div>
+                                </div>
+                                <button type="button" onclick="clearSelectedImage()" style="background:none; color:#ef4444; font-size:16px; cursor:pointer;">&times;</button>
+                            </div>
+                            <div style="margin-top:10px; display:flex; align-items:center; gap:8px;">
+                                <span style="font-family:'Space Mono', monospace; font-size:11px; color:var(--gold-bright);">OR ENTER IMAGE URL:</span>
+                                <input type="url" class="form-control" id="p-image-url" placeholder="https://..." style="flex:1;">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Short Specimen Hook *</label>
+                            <input type="text" class="form-control" id="p-short-desc" required placeholder="One-line hook, e.g. 260 GSM luxury heavyweight French Terry with drop shoulder drape">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Detailed Narrative & Specs *</label>
+                            <textarea class="form-control" id="p-description" rows="4" required placeholder="Full technical breakdown: fabric composition, wash care, sizing recommendations, features..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sizes / Variants (Comma Separated)</label>
+                            <input type="text" class="form-control" id="p-variants" value="S, M, L, XL, XXL" placeholder="S, M, L, XL, XXL">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Search Tags (Comma Separated)</label>
+                            <input type="text" class="form-control" id="p-tags" value="nvb cult, heavyweight, streetwear" placeholder="streetwear, oversized, drop">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-product" id="btn-upload-submit">
+                        ⚡ Publish Drop to Storefront
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab 2: Inventory Management -->
+        <div id="portal-tab-inventory" style="display:none;">
+            <div class="inventory-table-wrap">
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Specimen</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portal-inventory-tbody">
+                        <!-- Rendered dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 3: Freight Orders -->
+        <div id="portal-tab-orders" style="display:none;">
+            <div class="inventory-table-wrap">
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Destination</th>
+                            <th>Items</th>
+                            <th>Payable</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portal-orders-tbody">
+                        <!-- Rendered dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== OWNER LOGIN MODAL ==================== -->
+    <div class="modal-overlay" id="login-modal" onclick="closeLoginModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">Owner Access // NVB Cult</h3>
+                <button class="modal-close-btn" onclick="closeLoginModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:13px; color:#cbd5e1; margin-bottom:16px;">
+                    Sign in with owner credentials to upload products and manage inventory.
+                </p>
+
+                <div style="background:#0a0a0f; border:1.5px solid var(--gold); padding:12px 14px; font-family:'Space Mono', monospace; font-size:12px; margin-bottom:18px; border-radius:4px; color:#ffffff;">
+                    <strong style="color:var(--gold-bright);">🔑 CREDENTIALS:</strong><br>
+                    USER: <code style="color:#000000; font-weight:800; background:var(--gold); padding:2px 6px; border-radius:2px;">admin</code><br>
+                    PASS: <code style="color:#000000; font-weight:800; background:var(--gold); padding:2px 6px; border-radius:2px;">admin123</code>
+                </div>
+
+                <form onsubmit="handleAdminLogin(event)">
+                    <div class="form-group" style="margin-bottom:14px;">
+                        <label>Username</label>
+                        <input type="text" class="form-control" id="login-username" value="admin" required autofocus>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:20px;">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="login-password" value="admin123" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit-product" style="width:100%; margin-top:0;" id="login-submit-btn">
+                        Sign In as Owner
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PRODUCT DETAILS MODAL ==================== -->
+    <div class="modal-overlay" id="product-details-modal" onclick="closeDetailsModal(event)">
+        <div class="modal-card product-modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title" id="det-modal-title">Specimen Details</h3>
+                <button class="modal-close-btn" onclick="closeDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="details-grid">
+                    <div>
+                        <img src="" id="det-img" class="details-main-img" alt="Product">
+                        <div class="details-thumbs" id="det-thumbs-container"></div>
+                    </div>
+                    <div>
+                        <span class="badge" id="det-badge-cat">T-Shirts</span>
+                        <h2 style="font-family:'Cinzel', serif; font-size: 24px; font-weight: 800; margin: 10px 0 12px 0; color:#ffffff;" id="det-title">Product Title</h2>
+                        
+                        <div class="card-price-row" style="margin-bottom: 16px;">
+                            <span class="price-current" id="det-price">₹0</span>
+                            <span class="price-mrp" id="det-mrp">₹0</span>
+                            <span class="price-off" id="det-off">0% OFF</span>
+                        </div>
+
+                        <p style="font-size:14px; color:#cbd5e1; line-height:1.6; margin-bottom:18px;" id="det-desc">
+                            Description text...
+                        </p>
+
+                        <!-- Variants Selector (Size / Color) -->
+                        <div id="det-variant-box" style="margin-bottom: 18px;">
+                            <label style="font-family:'Space Mono', monospace; font-size:11px; font-weight:700; display:block; margin-bottom:8px; text-transform:uppercase; color:var(--gold-bright);">Select Size / Variant:</label>
+                            <div style="display:flex; flex-wrap:wrap; gap:8px;" id="det-variants-chips"></div>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+                            <span style="font-family:'Space Mono', monospace; font-size:11px; font-weight:700; text-transform:uppercase; color:#cbd5e1;">Quantity:</span>
+                            <div class="inv-stock-stepper">
+                                <button class="inv-stock-btn" onclick="updateModalQty(-1)">-</button>
+                                <span class="inv-stock-num" id="modal-qty">1</span>
+                                <button class="inv-stock-btn" onclick="updateModalQty(1)">+</button>
+                            </div>
+                            <span style="font-family:'Space Mono', monospace; font-size:11px; color:#22c55e; font-weight:700;">✓ IN STOCK</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <button class="btn-add-cart" style="padding:12px;" onclick="addModalItemToCart()">Add to Bag</button>
+                            <button class="btn-submit-product" style="margin-top:0; padding:12px;" onclick="buyModalItemNow()">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CART DRAWER ==================== -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay" onclick="closeCartDrawer(event)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-header">
+                <h3 style="font-family:'Cinzel', serif; font-size:18px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#ffffff;">Official Bag Manifest</h3>
+                <button class="modal-close-btn" onclick="closeCartDrawer()">&times;</button>
+            </div>
+            <div class="cart-items-scroll" id="cart-items-container">
+                <!-- Dynamically filled -->
+            </div>
+            <div class="cart-footer">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-family:'Space Mono', monospace; font-size:12px;">
+                    <span style="color:#94a3b8;">FREIGHT DISPATCH:</span>
+                    <span style="color:#22c55e; font-weight:700;">FREE EXPRESS</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-family:'Space Mono', monospace; font-size:18px; font-weight:700;">
+                    <span style="color:#ffffff;">TOTAL PAYABLE:</span>
+                    <span id="cart-total-payable" style="color:var(--gold-bright);">₹0</span>
+                </div>
+                <button class="btn-submit-product" style="width:100%; margin-top:0;" onclick="openCheckoutModal()">
+                    Proceed to Dispatch Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CHECKOUT MODAL ==================== -->
+    <div class="modal-overlay" id="checkout-modal" onclick="closeCheckoutModal(event)">
+        <div class="modal-card" style="max-width:520px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">Dispatch Shipping Invoice</h3>
+                <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handlePlaceOrder(event)">
+                    <div class="form-group" style="margin-bottom:12px;">
+                        <label>Full Name *</label>
+                        <input type="text" class="form-control" id="order-name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group" style="margin-bottom:12px;">
+                        <label>Phone Number *</label>
+                        <input type="tel" class="form-control" id="order-phone" required placeholder="+91 98765 43210">
+                    </div>
+                    <div class="form-group" style="margin-bottom:12px;">
+                        <label>Shipping Address *</label>
+                        <textarea class="form-control" id="order-address" required rows="2" placeholder="House/Flat No, Street, Area"></textarea>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+                        <div class="form-group">
+                            <label>City *</label>
+                            <input type="text" class="form-control" id="order-city" required placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label>Pincode *</label>
+                            <input type="text" class="form-control" id="order-pincode" required placeholder="Pincode">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:18px;">
+                        <label>Payment Mode *</label>
+                        <select class="form-control" id="order-payment">
+                            <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+                            <option value="UPI (GPay / PhonePe / Paytm)">UPI (Google Pay / PhonePe / Paytm)</option>
+                            <option value="Credit / Debit Card">Credit / Debit Card</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit-product" style="width:100%; margin-top:0;">
+                        Confirm & Place Order (<span id="checkout-btn-amt">₹0</span>)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CULT AI ASSISTANT WIDGET (BLACK & GOLD) ==================== -->
+    <div class="ai-fab-btn" id="ai-fab-btn" onclick="toggleAiChat()">
+        <span class="ai-fab-pulse"></span>
+        <span>✦ Cult AI Comm-Link</span>
+    </div>
+
+    <div class="ai-chat-window" id="ai-chat-window">
+        <div class="ai-chat-header">
+            <div class="ai-header-title">
+                <span class="ai-fab-pulse"></span>
+                <span>NVB CULT AI // COMM-LINK</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button onclick="clearAiChat()" style="background:none; color:var(--gold-bright); font-family:'Space Mono', monospace; font-size:10px; cursor:pointer;" title="Reset chat">[RESET]</button>
+                <button onclick="toggleAiChat()" style="background:none; color:#fff; font-size:18px; cursor:pointer;">&times;</button>
+            </div>
+        </div>
+        <div class="ai-chat-body" id="ai-chat-body">
+            <div class="ai-bubble ai-bubble-bot">
+                ✦ <strong>WELCOME TO NVB CULT</strong> ✦
+                <br><br>
+                I am your Cult AI assistant. Ask me about our <strong>company story</strong>, our <strong>"Dream • Plan • Achieve"</strong> motto, 260 GSM heavyweight drops, sizing charts, or upcoming creator electronics.
+            </div>
+            <div class="ai-suggestions-row">
+                <button class="ai-chip" onclick="sendAiPrompt('Tell me about the NVB company story and motto')">👑 Our Company Story</button>
+                <button class="ai-chip" onclick="sendAiPrompt('What does the NVB logo symbolize?')">👁️ Logo Symbolism</button>
+                <button class="ai-chip" onclick="sendAiPrompt('Tell me about 260 GSM heavyweight cotton')">👕 260 GSM Fabric</button>
+                <button class="ai-chip" onclick="sendAiPrompt('What size should I choose for oversized t-shirts?')">📐 Sizing Guide</button>
+                <button class="ai-chip" onclick="sendAiPrompt('Any discount coupon code?')">🏷️ Coupon 'VISION10'</button>
+            </div>
+            <div class="ai-typing-indicator" id="ai-typing-indicator">
+                <span class="ai-typing-dot"></span>
+                <span class="ai-typing-dot"></span>
+                <span class="ai-typing-dot"></span>
+            </div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" class="ai-chat-input" id="ai-input" placeholder="Ask about our company, drops, motto..." onkeydown="if(event.key==='Enter') submitAiMessage()">
+            <button class="ai-send-btn" onclick="submitAiMessage()" title="Send">SEND</button>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-msg" id="toast-msg">PRODUCT ADDED!</div>
+
+    <!-- ==================== CLASSIC FOOTER (BLACK & GOLD, EST. 2026) ==================== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <div style="font-family:'Cinzel', serif; font-size:18px; font-weight:800; letter-spacing:1.5px; color:#ffffff;">
+                    NEXT VISION BRAND CULT
+                </div>
+                <div style="font-family:'Playfair Display', serif; font-style:italic; font-size:12px; color:var(--gold-bright); margin-top:4px;">
+                    DREAM • PLAN • ACHIEVE — Est. 2026 — Melodic Streetwear & Creator Electronics
+                </div>
+            </div>
+
+            <div style="font-family:'Space Mono', monospace; font-size:11px; color:#94a3b8; display:flex; gap:18px; align-items:center;">
+                <span>© 2026 NVB CULT CO.</span>
+                <a href="#" onclick="openLoginModal()" style="font-family:'Space Mono', monospace; font-size:11px; color:var(--gold-bright); text-decoration:underline;">Owner Portal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== FRONTEND JAVASCRIPT ==================== -->
+    <script>
+        // State variables
+        
+        // Smart Backend Origin Resolver (Supports http://localhost:8000, file:///, Live Server, etc.)
+        const API_BASE = (window.location.protocol === 'file:' || !window.location.host) 
+            ? 'http://localhost:8000' 
+            : '';
+    
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentCategory = "all";
+        let currentSubcategory = "all";
+        let searchQuery = "";
+        let currentSort = "featured";
+        let wishlistItems = new Set();
+        let cartItems = [];
+        let activeProductModal = null;
+        let selectedVariant = "";
+        let modalQuantity = 1;
+        let adminToken = localStorage.getItem("nvb_cult_admin_token") || null;
+        let selectedImageBase64 = null;
+
+        const subcategoriesMap = {
+            "T-Shirts": ["Oversized Streetwear", "Graphic & Art", "Supima Plain", "Polo & Collared", "Hoodies & Sweatshirts"],
+            "Electronics": ["Earbuds & Audio", "Smartwatches", "Fast Chargers", "Creator Mics", "Desk Accessories"]
+        };
+
+        
+        // ==================== PWA INSTALL & SERVICE WORKER ====================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(reg => console.log('NVB Cult SW registered:', reg.scope))
+                    .catch(err => console.log('NVB Cult SW register failed:', err));
+            });
+        }
+
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btn = document.getElementById('pwa-install-btn');
+            if (btn) btn.style.display = 'inline-flex';
+        });
+
+        async function triggerPwaInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    showToast('INSTALLING NVB CULT APP...');
+                }
+                deferredPrompt = null;
+            } else {
+                alert(`✦ TO INSTALL NVB CULT AS AN APP:
+
+1. Click the Install App icon on the right side of your browser address bar.
+2. Click 'Install' to add NVB Cult to your Windows Start Menu, Taskbar & Desktop!
+
+Or use the desktop shortcut created on your desktop: 'NVB Cult App'`);
+            }
+        }
+    
+        // Initialize Store on load
+        document.addEventListener("DOMContentLoaded", () => {
+            initAuthStatus();
+            loadWishlist();
+            loadCart();
+            checkBackendHealth();
+            fetchProducts();
+            fetchAdminStats();
+        });
+
+        async function checkBackendHealth(showToastMsg = false) {
+            const pill = document.getElementById("backend-status-pill");
+            const text = document.getElementById("backend-status-text");
+            try {
+                const res = await fetch(`${API_BASE}/api/health`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (pill) {
+                        pill.classList.remove("error");
+                        pill.classList.add("online");
+                    }
+                    if (text) {
+                        text.textContent = `BACKEND: LIVE (${data.products_count !== undefined ? data.products_count : allProducts.length} DROPS)`;
+                    }
+                    if (showToastMsg) {
+                        showToast(`✦ BACKEND CONNECTED: ${data.server || 'NVB FASTAPI'} // ${data.products_count} DROPS IN SQLITE`);
+                    }
+                } else {
+                    throw new Error("HTTP " + res.status);
+                }
+            } catch (e) {
+                if (pill) {
+                    pill.classList.add("error");
+                    pill.classList.remove("online");
+                }
+                if (text) {
+                    text.textContent = "BACKEND: OFFLINE";
+                }
+                if (showToastMsg) {
+                    showToast("⚠ BACKEND OFFLINE - CHECK TERMINAL");
+                }
+            }
+        }
+
+        function scrollToManifesto() {
+            const el = document.getElementById("nvb-company-story");
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== FETCH PRODUCTS ====================
+        async function fetchProducts() {
+            try {
+                const res = await fetch(`${API_BASE}/api/products`);
+                allProducts = await res.json();
+                
+                // Update hero counter badges
+                const teeCount = allProducts.filter(p => p.category === "T-Shirts").length;
+                const elecCount = allProducts.filter(p => p.category === "Electronics").length;
+                
+                const teeEl = document.getElementById("hero-tee-count");
+                if (teeEl) teeEl.textContent = `${teeCount} DROPS • ${teeCount === 0 ? 'OWNER UPLOAD READY' : 'IN VAULT'}`;
+                const elecEl = document.getElementById("hero-elec-count");
+                if (elecEl) elecEl.textContent = `${elecCount} DROPS • ${elecCount === 0 ? 'OWNER UPLOAD READY' : 'IN VAULT'}`;
+                const totalEl = document.getElementById("total-count-badge");
+                if (totalEl) totalEl.textContent = allProducts.length;
+
+                const statusText = document.getElementById("backend-status-text");
+                if (statusText) statusText.textContent = `BACKEND: LIVE (${allProducts.length} DROPS)`;
+                
+                applyFiltersAndRender();
+                renderInventoryTable();
+            } catch (err) {
+                console.error("Failed to load products:", err);
+            }
+        }
+
+        // ==================== FILTERING & SEARCH ====================
+        function filterByCategory(cat) {
+            currentCategory = cat;
+            currentSubcategory = "all";
+            
+            // Switch tabs
+            document.querySelectorAll(".cat-tab").forEach(tab => {
+                tab.classList.toggle("active", tab.dataset.cat === cat);
+            });
+            document.querySelectorAll(".header-nav .nav-link").forEach(link => {
+                if (link.dataset.cat) {
+                    link.classList.toggle("active", link.dataset.cat === cat);
+                }
+            });
+
+            renderSubcategoryChips();
+            applyFiltersAndRender();
+
+            // Scroll to catalog smoothly if triggered from hero
+            if (event && event.currentTarget && event.currentTarget.classList.contains("hero-card")) {
+                const main = document.querySelector(".store-container");
+                if (main) main.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function renderSubcategoryChips() {
+            const container = document.getElementById("subcat-chips-container");
+            container.innerHTML = "";
+            
+            if (currentCategory === "all") {
+                container.style.display = "none";
+                return;
+            }
+
+            container.style.display = "flex";
+            const subs = subcategoriesMap[currentCategory] || [];
+            
+            // 'All' chip
+            const allChip = document.createElement("button");
+            allChip.className = `subcat-chip ${currentSubcategory === 'all' ? 'active' : ''}`;
+            allChip.textContent = `All ${currentCategory}`;
+            allChip.onclick = () => {
+                currentSubcategory = "all";
+                renderSubcategoryChips();
+                applyFiltersAndRender();
+            };
+            container.appendChild(allChip);
+
+            subs.forEach(sub => {
+                const chip = document.createElement("button");
+                chip.className = `subcat-chip ${currentSubcategory === sub ? 'active' : ''}`;
+                chip.textContent = sub;
+                chip.onclick = () => {
+                    currentSubcategory = sub;
+                    renderSubcategoryChips();
+                    applyFiltersAndRender();
+                };
+                container.appendChild(chip);
+            });
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            const clearBtn = document.getElementById("clear-search");
+            clearBtn.style.display = searchQuery ? "block" : "none";
+            applyFiltersAndRender();
+        }
+
+        function clearSearch() {
+            document.getElementById("store-search-input").value = "";
+            searchQuery = "";
+            document.getElementById("clear-search").style.display = "none";
+            applyFiltersAndRender();
+        }
+
+        function handleSort(val) {
+            currentSort = val;
+            applyFiltersAndRender();
+        }
+
+        function applyFiltersAndRender() {
+            filteredProducts = allProducts.filter(p => {
+                const matchCat = currentCategory === "all" || p.category === currentCategory;
+                const matchSub = currentSubcategory === "all" || p.subcategory === currentSubcategory;
+                const matchSearch = !searchQuery || 
+                    p.title.toLowerCase().includes(searchQuery) ||
+                    (p.short_description && p.short_description.toLowerCase().includes(searchQuery)) ||
+                    (p.tags && p.tags.toLowerCase().includes(searchQuery)) ||
+                    p.category.toLowerCase().includes(searchQuery);
+                return matchCat && matchSub && matchSearch;
+            });
+
+            // Sorting
+            if (currentSort === "price_asc") {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (currentSort === "price_desc") {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            } else if (currentSort === "rating") {
+                filteredProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+            } else if (currentSort === "discount") {
+                filteredProducts.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+            }
+
+            renderProductsGrid();
+        }
+
+        // ==================== RENDER PRODUCT GRID ====================
+        function renderProductsGrid() {
+            const grid = document.getElementById("products-grid");
+            grid.innerHTML = "";
+
+            if (filteredProducts.length === 0) {
+                // Customized Melodic Empty State Box (Black & Gold)
+                const emptyBox = document.createElement("div");
+                emptyBox.className = "empty-archive-box";
+                
+                if (currentCategory === "T-Shirts") {
+                    emptyBox.innerHTML = `
+                        <div style="font-size: 44px; margin-bottom: 12px;">👕</div>
+                        <h3 style="font-family: 'Cinzel', serif; font-size: 20px; font-weight: 800; text-transform: uppercase; color:#ffffff;">NVB Cult T-Shirt Vault Empty</h3>
+                        <p style="color: #cbd5e1; font-size: 14px; margin: 8px auto 20px auto; max-width: 480px;">
+                            All placeholder example products have been cleared! As the store owner, you can upload your custom 260 GSM streetwear and tees right now.
+                        </p>
+                        <button class="btn-submit-product" style="padding: 10px 24px; font-size: 12px;" onclick="openUploadForCategory('T-Shirts')">
+                            + Upload T-Shirt Drop as Owner
+                        </button>
+                    `;
+                } else if (currentCategory === "Electronics") {
+                    emptyBox.innerHTML = `
+                        <div style="font-size: 44px; margin-bottom: 12px;">⚡</div>
+                        <h3 style="font-family: 'Cinzel', serif; font-size: 20px; font-weight: 800; text-transform: uppercase; color:#ffffff;">NVB Cult Electronics Vault Empty</h3>
+                        <p style="color: #cbd5e1; font-size: 14px; margin: 8px auto 20px auto; max-width: 480px;">
+                            All placeholder electronic products have been cleared! As the store owner, you can upload your creator audio and tech drops.
+                        </p>
+                        <button class="btn-submit-product" style="padding: 10px 24px; font-size: 12px;" onclick="openUploadForCategory('Electronics')">
+                            + Upload Electronics Drop as Owner
+                        </button>
+                    `;
+                } else {
+                    emptyBox.innerHTML = `
+                        <div style="font-size: 44px; margin-bottom: 12px;">👑</div>
+                        
+                        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(34,197,94,0.12); border:1.5px solid rgba(34,197,94,0.35); padding:6px 14px; border-radius:4px; font-family:'Space Mono', monospace; font-size:11px; color:#22c55e; margin-bottom:18px;">
+                            <span style="width:7px; height:7px; background:#22c55e; border-radius:50%; box-shadow:0 0 6px #22c55e;"></span>
+                            <span>BACKEND & SQLITE DATABASE: CONNECTED (0 DROPS STORED)</span>
+                        </div><br>
+    <h3 style="font-family:'Cinzel', serif; font-size: 20px; font-weight: 800; text-transform: uppercase; color:#ffffff;">NVB Cult Archive Clear</h3>
+                        <p style="color: #cbd5e1; font-size: 14px; margin: 8px auto 20px auto; max-width: 480px;">
+                            Zero dummy products in the database. Ready for authentic drops to be uploaded in T-Shirts or Electronics.
+                        </p>
+                        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+                            <button class="btn-submit-product" style="padding:10px 22px; font-size:12px;" onclick="openUploadForCategory('T-Shirts')">
+                                + Upload T-Shirt Drop
+                            </button>
+                            <button class="btn-submit-product" style="padding:10px 22px; font-size:12px; background:#14141c; color:var(--gold-bright); border:1.5px solid var(--gold); box-shadow:3px 3px 0px #000000;" onclick="openUploadForCategory('Electronics')">
+                                + Upload Electronics Drop
+                            </button>
+                        </div>
+                    `;
+                }
+                grid.appendChild(emptyBox);
+                return;
+            }
+
+            filteredProducts.forEach(prod => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+
+                const isWish = wishlistItems.has(prod.id);
+                const isTee = prod.category === "T-Shirts";
+                const isDiscount = prod.discount > 0;
+
+                card.innerHTML = `
+                    <div class="card-top-strip">
+                        <span class="card-sku-tag">${prod.sku || 'NVB-CULT'}</span>
+                        <span class="card-drop-tag">LIMITED DROP</span>
+                    </div>
+
+                    <div class="card-img-wrap" onclick="openDetailsModal('${prod.id}')">
+                        <img src="${prod.image_url || '/static/placeholder.jpg'}" alt="${prod.title}" class="card-img" loading="lazy">
+                        
+                        <div class="card-badges">
+                            <span class="badge ${isTee ? 'badge-category-tee' : 'badge-category-elec'}">${prod.category}</span>
+                            ${isDiscount ? `<span class="badge badge-discount">${prod.discount}% OFF</span>` : ''}
+                        </div>
+
+                        <button class="card-wish-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist(event, '${prod.id}')" title="Save to Wishlist">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isWish ? '#d4af37' : 'none'}" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <span class="card-category-name">${prod.subcategory || prod.category}</span>
+                        <h3 class="card-title" onclick="openDetailsModal('${prod.id}')">${prod.title}</h3>
+                        
+                        <div class="card-rating-row">
+                            <span class="stars">★★★★★</span>
+                            <span style="font-weight:700; color:#ffffff;">${prod.rating || 4.9}</span>
+                            <span class="reviews-count">(${prod.review_count || 12} reviews)</span>
+                        </div>
+
+                        <div class="card-price-row">
+                            <span class="price-current">₹${prod.price}</span>
+                            ${prod.mrp ? `<span class="price-mrp">₹${prod.mrp}</span>` : ''}
+                            ${isDiscount ? `<span class="price-off">${prod.discount}% OFF</span>` : ''}
+                        </div>
+
+                        <div class="card-action-btns">
+                            <button class="btn-add-cart" onclick="quickAddToCart('${prod.id}')">
+                                <span>+ ADD TO BAG</span>
+                            </button>
+                            <button class="btn-quick-view" onclick="openDetailsModal('${prod.id}')" title="Inspect Specs">
+                                👁
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Open owner upload tab pre-selected for category
+        function openUploadForCategory(cat) {
+            if (!adminToken) {
+                openLoginModal();
+                return;
+            }
+            toggleStoreMode("upload");
+            const catSelect = document.getElementById("p-category");
+            if (catSelect) {
+                catSelect.value = cat;
+                updateSubcatOptions(cat);
+            }
+        }
+
+        // ==================== PRODUCT DETAILS MODAL ====================
+        function openDetailsModal(prodId) {
+            const prod = allProducts.find(p => p.id === prodId);
+            if (!prod) return;
+            activeProductModal = prod;
+            modalQuantity = 1;
+
+            document.getElementById("det-modal-title").textContent = `Specimen // ${prod.sku || 'NVB-CULT'}`;
+            document.getElementById("det-img").src = prod.image_url || '/static/placeholder.jpg';
+            document.getElementById("det-title").textContent = prod.title;
+            document.getElementById("det-desc").textContent = prod.description || prod.short_description || "";
+            document.getElementById("det-price").textContent = `₹${prod.price}`;
+            document.getElementById("det-mrp").textContent = prod.mrp ? `₹${prod.mrp}` : "";
+            document.getElementById("det-off").textContent = prod.discount ? `${prod.discount}% OFF` : "";
+            document.getElementById("modal-qty").textContent = "1";
+
+            const catBadge = document.getElementById("det-badge-cat");
+            catBadge.textContent = prod.category;
+            catBadge.className = `badge ${prod.category === 'T-Shirts' ? 'badge-category-tee' : 'badge-category-elec'}`;
+
+            // Render variants
+            const varContainer = document.getElementById("det-variants-chips");
+            varContainer.innerHTML = "";
+            let variants = [];
+            if (prod.sizes && Array.isArray(prod.sizes) && prod.sizes.length > 0) {
+                variants = prod.sizes;
+            } else if (prod.variants && Array.isArray(prod.variants) && prod.variants.length > 0) {
+                variants = prod.variants;
+            } else {
+                variants = prod.category === "T-Shirts" ? ["S", "M", "L", "XL", "XXL"] : ["Standard Issue"];
+            }
+
+            selectedVariant = variants[0] || "Standard";
+            variants.forEach(v => {
+                const btn = document.createElement("button");
+                btn.className = `subcat-chip ${selectedVariant === v ? 'active' : ''}`;
+                btn.textContent = v;
+                btn.onclick = () => {
+                    selectedVariant = v;
+                    varContainer.querySelectorAll(".subcat-chip").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                };
+                varContainer.appendChild(btn);
+            });
+
+            // Thumbnails
+            const thumbsBox = document.getElementById("det-thumbs-container");
+            thumbsBox.innerHTML = "";
+            if (prod.images && Array.isArray(prod.images) && prod.images.length > 1) {
+                prod.images.forEach(imgUrl => {
+                    const thumb = document.createElement("img");
+                    thumb.src = imgUrl;
+                    thumb.className = "details-thumb";
+                    thumb.onclick = () => {
+                        document.getElementById("det-img").src = imgUrl;
+                    };
+                    thumbsBox.appendChild(thumb);
+                });
+            }
+
+            document.getElementById("product-details-modal").style.display = "flex";
+        }
+
+        function closeDetailsModal(e) {
+            if (e && e.target && e.target.classList.contains("modal-body")) return;
+            document.getElementById("product-details-modal").style.display = "none";
+            activeProductModal = null;
+        }
+
+        function updateModalQty(delta) {
+            modalQuantity = Math.max(1, modalQuantity + delta);
+            document.getElementById("modal-qty").textContent = modalQuantity;
+        }
+
+        function addModalItemToCart() {
+            if (!activeProductModal) return;
+            addToCart(activeProductModal, selectedVariant, modalQuantity);
+            document.getElementById("product-details-modal").style.display = "none";
+            openCartDrawer();
+        }
+
+        function buyModalItemNow() {
+            if (!activeProductModal) return;
+            addToCart(activeProductModal, selectedVariant, modalQuantity);
+            document.getElementById("product-details-modal").style.display = "none";
+            openCheckoutModal();
+        }
+
+        // ==================== CART MANAGEMENT ====================
+        function quickAddToCart(prodId) {
+            const prod = allProducts.find(p => p.id === prodId);
+            if (!prod) return;
+            const defVar = (prod.sizes && prod.sizes[0]) || (prod.variants && prod.variants[0]) || (prod.category === 'T-Shirts' ? 'L' : 'Standard');
+            addToCart(prod, defVar, 1);
+            showToast(`ADDED ${prod.title.slice(0, 20)}...`);
+        }
+
+        function addToCart(product, variant, qty) {
+            const existing = cartItems.find(i => i.product.id === product.id && i.variant === variant);
+            if (existing) {
+                existing.quantity += qty;
+            } else {
+                cartItems.push({
+                    product: product,
+                    variant: variant,
+                    quantity: qty
+                });
+            }
+            saveCart();
+            updateCartBadges();
+            renderCartItems();
+        }
+
+        function saveCart() {
+            localStorage.setItem("nvb_cult_cart", JSON.stringify(cartItems));
+        }
+
+        function loadCart() {
+            try {
+                const stored = localStorage.getItem("nvb_cult_cart");
+                if (stored) cartItems = JSON.parse(stored);
+            } catch (e) {
+                cartItems = [];
+            }
+            updateCartBadges();
+        }
+
+        function updateCartBadges() {
+            const total = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById("cart-count").textContent = total;
+        }
+
+        function openCartDrawer() {
+            renderCartItems();
+            document.getElementById("cart-drawer-overlay").style.display = "block";
+        }
+
+        function closeCartDrawer(e) {
+            if (e && e.target && e.target.classList.contains("cart-drawer")) return;
+            document.getElementById("cart-drawer-overlay").style.display = "none";
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById("cart-items-container");
+            container.innerHTML = "";
+
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:60px 20px; font-family:'Space Mono', monospace; color:#94a3b8;">
+                        <div style="font-size:36px; margin-bottom:12px;">🛍️</div>
+                        <div style="font-size:13px; font-weight:700; color:#ffffff;">BAG ARCHIVE IS EMPTY</div>
+                        <div style="font-size:11px; margin-top:6px;">Select drops from Side A or Side B</div>
+                    </div>
+                `;
+                document.getElementById("cart-total-payable").textContent = "₹0";
+                return;
+            }
+
+            let total = 0;
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.product.price * item.quantity;
+                total += itemTotal;
+
+                const row = document.createElement("div");
+                row.className = "cart-item-card";
+                row.innerHTML = `
+                    <img src="${item.product.image_url || '/static/placeholder.jpg'}" class="cart-item-thumb" alt="${item.product.title}">
+                    <div style="overflow:hidden;">
+                        <div style="font-family:'Cinzel', serif; font-size:13px; font-weight:700; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                            ${item.product.title}
+                        </div>
+                        <div style="font-family:'Space Mono', monospace; font-size:10px; color:var(--gold-bright); margin-top:2px;">
+                            ${item.variant} • ₹${item.product.price} each
+                        </div>
+                        <div class="inv-stock-stepper" style="margin-top:6px;">
+                            <button class="inv-stock-btn" onclick="updateCartItemQty(${index}, -1)">-</button>
+                            <span class="inv-stock-num">${item.quantity}</span>
+                            <button class="inv-stock-btn" onclick="updateCartItemQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-family:'Space Mono', monospace; font-size:14px; font-weight:700; color:var(--gold-bright);">₹${itemTotal}</div>
+                        <button onclick="removeCartItem(${index})" style="background:none; color:#ef4444; font-family:'Space Mono', monospace; font-size:11px; margin-top:6px; cursor:pointer;">REMOVE</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            document.getElementById("cart-total-payable").textContent = `₹${total}`;
+        }
+
+        function updateCartItemQty(idx, delta) {
+            if (cartItems[idx]) {
+                cartItems[idx].quantity += delta;
+                if (cartItems[idx].quantity <= 0) {
+                    cartItems.splice(idx, 1);
+                }
+                saveCart();
+                updateCartBadges();
+                renderCartItems();
+            }
+        }
+
+        function removeCartItem(idx) {
+            cartItems.splice(idx, 1);
+            saveCart();
+            updateCartBadges();
+            renderCartItems();
+        }
+
+        // ==================== CHECKOUT & ORDERS ====================
+        function openCheckoutModal() {
+            if (cartItems.length === 0) {
+                alert("Your bag is empty! Add items first.");
+                return;
+            }
+            closeCartDrawer();
+            const total = cartItems.reduce((acc, i) => acc + (i.product.price * i.quantity), 0);
+            document.getElementById("checkout-btn-amt").textContent = `₹${total}`;
+            document.getElementById("checkout-modal").style.display = "flex";
+        }
+
+        function closeCheckoutModal(e) {
+            if (e && e.target && e.target.classList.contains("modal-card")) return;
+            document.getElementById("checkout-modal").style.display = "none";
+        }
+
+        async function handlePlaceOrder(e) {
+            e.preventDefault();
+            const total = cartItems.reduce((acc, i) => acc + (i.product.price * i.quantity), 0);
+            const orderPayload = {
+                session_id: "nvb-session-" + Date.now(),
+                customer_name: document.getElementById("order-name").value || "NVB Cult Patron",
+                customer_email: "cult@nvb.com",
+                customer_phone: document.getElementById("order-phone").value || "9876543210",
+                shipping_address: `${document.getElementById("order-address").value}, ${document.getElementById("order-city").value} - ${document.getElementById("order-pincode").value}`,
+                payment_method: document.getElementById("order-payment").value || "Cash on Delivery",
+                total: total,
+                items: cartItems.map(i => ({
+                    product_id: i.product.id,
+                    title: i.product.title,
+                    price: i.product.price,
+                    quantity: i.quantity,
+                    variant: i.variant
+                }))
+            };
+
+            try {
+                let res = await fetch(`${API_BASE}/api/orders`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(orderPayload)
+                });
+                if (!res.ok) {
+                    res = await fetch(`${API_BASE}/api/checkout`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(orderPayload)
+                    });
+                }
+
+                if (res.ok) {
+                    const data = await res.json();
+                    cartItems = [];
+                    saveCart();
+                    updateCartBadges();
+                    closeCheckoutModal();
+                    alert(`✓ DISPATCH ORDER CONFIRMED!\\n\\nOrder ID: #${data.order_id || 'NVB-CULT'}\\nTotal: ₹${total}\\nStatus: Confirmed for dispatch.`);
+                    fetchAdminStats();
+                } else {
+                    alert("Order placement failed. Please verify fields.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Order connection failed.");
+            }
+        }
+
+        // ==================== WISHLIST ====================
+        function loadWishlist() {
+            try {
+                const stored = localStorage.getItem("nvb_cult_wishlist");
+                if (stored) wishlistItems = new Set(JSON.parse(stored));
+            } catch (e) {
+                wishlistItems = new Set();
+            }
+            updateWishlistBadge();
+        }
+
+        function saveWishlist() {
+            localStorage.setItem("nvb_cult_wishlist", JSON.stringify(Array.from(wishlistItems)));
+            updateWishlistBadge();
+        }
+
+        function updateWishlistBadge() {
+            document.getElementById("wishlist-count").textContent = wishlistItems.size;
+        }
+
+        function toggleWishlist(e, prodId) {
+            e.stopPropagation();
+            if (wishlistItems.has(prodId)) {
+                wishlistItems.delete(prodId);
+                showToast("REMOVED FROM SAVED");
+            } else {
+                wishlistItems.add(prodId);
+                showToast("SAVED TO WISHLIST");
+            }
+            saveWishlist();
+            applyFiltersAndRender();
+        }
+
+        function filterByWishlist() {
+            if (wishlistItems.size === 0) {
+                showToast("WISHLIST IS EMPTY");
+                return;
+            }
+            filteredProducts = allProducts.filter(p => wishlistItems.has(p.id));
+            renderProductsGrid();
+            const main = document.querySelector(".store-container");
+            if (main) main.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== OWNER AUTH & SWITCHING ====================
+        function initAuthStatus() {
+            const btn = document.getElementById("auth-cta-btn");
+            const topBar = document.getElementById("owner-top-bar");
+
+            if (adminToken) {
+                btn.innerHTML = `<span>👑 OWNER ACTIVE</span>`;
+                btn.classList.add("logged-in");
+                topBar.style.display = "flex";
+            } else {
+                btn.innerHTML = `<span>OWNER ACCESS</span>`;
+                btn.classList.remove("logged-in");
+                topBar.style.display = "none";
+            }
+        }
+
+        function handleAuthAction() {
+            if (adminToken) {
+                toggleStoreMode("portal");
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById("login-modal").style.display = "flex";
+        }
+
+        function closeLoginModal(e) {
+            if (e && e.target && e.target.classList.contains("modal-card")) return;
+            document.getElementById("login-modal").style.display = "none";
+        }
+
+        async function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById("login-username").value;
+            const p = document.getElementById("login-password").value;
+
+            try {
+                let res = await fetch(`${API_BASE}/api/admin/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username: u, password: p })
+                });
+                if (!res.ok) {
+                    res = await fetch(`${API_BASE}/api/auth/login`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ username: u, password: p })
+                    });
+                }
+
+                if (res.ok) {
+                    const data = await res.json();
+                    adminToken = data.token || "admin_session_token_nvb_2026";
+                    localStorage.setItem("nvb_cult_admin_token", adminToken);
+                    closeLoginModal();
+                    initAuthStatus();
+                    toggleStoreMode("upload");
+                    showToast("OWNER ACCESS GRANTED");
+                } else {
+                    alert("Invalid Credentials. Please use admin / admin123");
+                }
+            } catch (err) {
+                // Fallback for direct token mock if endpoint strictly returns simple auth
+                if (u === "admin" && p === "admin123") {
+                    adminToken = "admin_session_token_nvb_2026";
+                    localStorage.setItem("nvb_cult_admin_token", adminToken);
+                    closeLoginModal();
+                    initAuthStatus();
+                    toggleStoreMode("upload");
+                    showToast("OWNER ACCESS GRANTED");
+                } else {
+                    alert("Sign in failed. Check credentials.");
+                }
+            }
+        }
+
+        function logoutAdmin() {
+            adminToken = null;
+            localStorage.removeItem("nvb_cult_admin_token");
+            initAuthStatus();
+            toggleStoreMode("store");
+            showToast("SIGNED OUT OF OWNER CONSOLE");
+        }
+
+        function toggleStoreMode(mode) {
+            const custView = document.getElementById("customer-store-view");
+            const portalView = document.getElementById("owner-portal-view");
+
+            if (mode === "store") {
+                custView.style.display = "block";
+                portalView.style.display = "none";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                custView.style.display = "none";
+                portalView.style.display = "block";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (mode === "upload") switchPortalTab("upload");
+                if (mode === "inventory") switchPortalTab("inventory");
+                if (mode === "orders") switchPortalTab("orders");
+            }
+        }
+
+        function switchPortalTab(tab) {
+            document.getElementById("portal-tab-upload").style.display = tab === "upload" ? "block" : "none";
+            document.getElementById("portal-tab-inventory").style.display = tab === "inventory" ? "block" : "none";
+            document.getElementById("portal-tab-orders").style.display = tab === "orders" ? "block" : "none";
+
+            document.querySelectorAll(".portal-tab").forEach(t => t.classList.remove("active"));
+            const targetBtn = document.getElementById(`tab-btn-${tab}`);
+            if (targetBtn) targetBtn.classList.add("active");
+
+            if (tab === "inventory") renderInventoryTable();
+            if (tab === "orders") renderOrdersTable();
+        }
+
+        // ==================== OWNER PRODUCT UPLOAD ====================
+        function updateSubcatOptions(category) {
+            const subSelect = document.getElementById("p-subcategory");
+            subSelect.innerHTML = "";
+            const subs = subcategoriesMap[category] || [];
+            subs.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = s;
+                opt.textContent = s;
+                subSelect.appendChild(opt);
+            });
+        }
+
+        function handleImageFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                selectedImageBase64 = event.target.result;
+                document.getElementById("p-preview-img").src = selectedImageBase64;
+                document.getElementById("p-preview-name").textContent = file.name;
+                document.getElementById("p-preview-box").style.display = "flex";
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearSelectedImage() {
+            selectedImageBase64 = null;
+            document.getElementById("p-image-file").value = "";
+            document.getElementById("p-preview-box").style.display = "none";
+        }
+
+        async function handleProductUpload(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById("btn-upload-submit");
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Processing Specimen Drop...";
+
+            const title = document.getElementById("p-title").value;
+            const category = document.getElementById("p-category").value;
+            const subcategory = document.getElementById("p-subcategory").value;
+            const price = parseFloat(document.getElementById("p-price").value);
+            const mrp = parseFloat(document.getElementById("p-mrp").value);
+            const stock = parseInt(document.getElementById("p-stock").value);
+            const sku = document.getElementById("p-sku").value || `NVB-${category === 'T-Shirts' ? 'TEE' : 'ELEC'}-${Date.now().toString().slice(-4)}`;
+            const shortDesc = document.getElementById("p-short-desc").value;
+            const desc = document.getElementById("p-description").value;
+            const variantsStr = document.getElementById("p-variants").value;
+            const tagsStr = document.getElementById("p-tags").value;
+            const urlInput = document.getElementById("p-image-url").value;
+
+            let finalImageUrl = urlInput || "/static/placeholder.jpg";
+
+            // If base64 file selected, upload image to server first
+            if (selectedImageBase64) {
+                try {
+                    const uploadRes = await fetch(`${API_BASE}/api/upload-image`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ image_data: selectedImageBase64, filename: "product_drop.png" })
+                    });
+                    if (uploadRes.ok) {
+                        const uploadData = await uploadRes.json();
+                        finalImageUrl = uploadData.url || uploadData.image_url || finalImageUrl;
+                    }
+                } catch (err) {
+                    console.warn("Image upload failed, using fallback base64 directly");
+                    finalImageUrl = selectedImageBase64;
+                }
+            }
+
+            const discount = mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
+            const variantsList = variantsStr.split(",").map(s => s.trim()).filter(Boolean);
+
+            const payload = {
+                title: title,
+                category: category,
+                subcategory: subcategory,
+                price: price,
+                mrp: mrp,
+                discount: discount,
+                stock: stock,
+                sku: sku,
+                image_url: finalImageUrl,
+                images: [finalImageUrl],
+                short_description: shortDesc,
+                description: desc,
+                sizes: variantsList,
+                variants: variantsList,
+                tags: tagsStr,
+                rating: 5.0,
+                review_count: 1
+            };
+
+            try {
+                // Post to products API (using admin endpoint or fallback standard)
+                let res = await fetch("/api/products", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${adminToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    // Try alternative /api/admin/products endpoint
+                    res = await fetch(`${API_BASE}/api/admin/products`, {
+                        method: "POST",
+                        headers: { 
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${adminToken}`
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                }
+
+                if (res.ok) {
+                    showToast("DROP PUBLISHED TO VAULT!");
+                    document.getElementById("owner-upload-form").reset();
+                    clearSelectedImage();
+                    await fetchProducts();
+                    toggleStoreMode("store");
+                    filterByCategory(category);
+                } else {
+                    alert("Upload failed. Verify product fields.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Upload connection failed.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "⚡ Publish Drop to Storefront";
+            }
+        }
+
+        // ==================== INVENTORY TABLE ====================
+        function renderInventoryTable() {
+            const tbody = document.getElementById("portal-inventory-tbody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            document.getElementById("portal-inv-count").textContent = allProducts.length;
+
+            if (allProducts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:30px; font-family:'Space Mono', monospace; color:#94a3b8;">NO PRODUCTS IN VAULT. UPLOAD YOUR FIRST SPECIMEN.</td></tr>`;
+                return;
+            }
+
+            allProducts.forEach(prod => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>
+                        <div class="inv-prod-cell">
+                            <img src="${prod.image_url || '/static/placeholder.jpg'}" alt="" class="inv-prod-thumb">
+                            <div>
+                                <div style="font-weight:700; color:#ffffff;">${prod.title}</div>
+                                <div style="font-family:'Space Mono', monospace; font-size:11px; color:#94a3b8;">SKU: ${prod.sku}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge ${prod.category === 'T-Shirts' ? 'badge-category-tee' : 'badge-category-elec'}">${prod.category}</span>
+                        <div style="font-size:11px; color:#94a3b8; margin-top:2px;">${prod.subcategory || ''}</div>
+                    </td>
+                    <td style="font-family:'Space Mono', monospace; font-weight:700; color:var(--gold-bright);">₹${prod.price}</td>
+                    <td>
+                        <div class="inv-stock-stepper">
+                            <button class="inv-stock-btn" onclick="adjustProductStock('${prod.id}', -5)">-</button>
+                            <span class="inv-stock-num">${prod.stock}</span>
+                            <button class="inv-stock-btn" onclick="adjustProductStock('${prod.id}', 5)">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="font-family:'Space Mono', monospace; font-size:11px; color:${prod.stock > 0 ? '#22c55e' : '#ef4444'}; font-weight:700;">
+                            ${prod.stock > 0 ? '✓ ACTIVE' : '⚠ DEPLETED'}
+                        </span>
+                    </td>
+                    <td>
+                        <button onclick="deleteAdminProduct('${prod.id}', '${encodeURIComponent(prod.title)}')" style="background:none; color:#ef4444; font-family:'Space Mono', monospace; font-size:11px; font-weight:700; cursor:pointer;" title="Delete Product">DELETE</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function adjustProductStock(prodId, delta) {
+            const prod = allProducts.find(p => p.id === prodId);
+            if (!prod) return;
+            const newStock = Math.max(0, (prod.stock || 0) + delta);
+            try {
+                await fetch(`${API_BASE}/api/products/${prodId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ stock: newStock })
+                });
+                prod.stock = newStock;
+                renderInventoryTable();
+                showToast(`STOCK UPDATED: ${newStock}`);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function deleteAdminProduct(prodId, title) {
+            if (!confirm(`Are you sure you want to permanently delete specimen:\n\n${decodeURIComponent(title)}?`)) return;
+            try {
+                const res = await fetch(`${API_BASE}/api/products/${prodId}`, { method: "DELETE" });
+                if (res.ok) {
+                    showToast("SPECIMEN REMOVED");
+                    await fetchProducts();
+                } else {
+                    alert("Delete failed.");
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // ==================== FREIGHT ORDERS TABLE ====================
+        async function renderOrdersTable() {
+            const tbody = document.getElementById("portal-orders-tbody");
+            if (!tbody) return;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; font-family:'Space Mono', monospace;">Scanning Freight Dispatches...</td></tr>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/orders`);
+                const orders = await res.json();
+                document.getElementById("portal-orders-count").textContent = orders.length;
+
+                if (orders.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:30px; font-family:'Space Mono', monospace; color:#94a3b8;">NO FREIGHT ORDERS DISPATCHED YET.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = "";
+                orders.forEach(ord => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td style="font-family:'Space Mono', monospace; font-weight:700; color:var(--gold-bright);">#${ord.id ? ord.id.slice(0, 8) : 'ORD'}</td>
+                        <td>
+                            <div style="font-weight:700; color:#ffffff;">${ord.customer_name}</div>
+                            <div style="font-size:11px; color:#94a3b8;">${ord.created_at ? ord.created_at.slice(0, 16) : ''}</div>
+                        </td>
+                        <td>
+                            <div style="font-size:12px; color:#ffffff;">${ord.customer_phone}</div>
+                            <div style="font-size:11px; color:#94a3b8;">${ord.shipping_address}</div>
+                        </td>
+                        <td>
+                            <span class="badge" style="background:#14141c; color:#ffffff; border-color:var(--gold);">${ord.items ? ord.items.length : 1} ITEM(S)</span>
+                        </td>
+                        <td style="font-family:'Space Mono', monospace; font-weight:700; color:var(--gold-bright);">₹${ord.total}</td>
+                        <td>
+                            <select class="form-control" style="padding:4px 8px; font-size:11px; font-family:'Space Mono', monospace;" onchange="updateOrderStatus('${ord.id}', this.value)">
+                                <option value="CONFIRMED" ${ord.status === 'CONFIRMED' ? 'selected' : ''}>CONFIRMED</option>
+                                <option value="IN_TRANSIT" ${ord.status === 'IN_TRANSIT' ? 'selected' : ''}>IN TRANSIT</option>
+                                <option value="DELIVERED" ${ord.status === 'DELIVERED' ? 'selected' : ''}>DELIVERED</option>
+                            </select>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function updateOrderStatus(orderId, status) {
+            try {
+                await fetch(`${API_BASE}/api/orders/${orderId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ status: status })
+                });
+                showToast(`ORDER #${orderId.slice(0,6)}: ${status}`);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function fetchAdminStats() {
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/stats`);
+                const stats = await res.json();
+                if (stats) {
+                    if (document.getElementById("portal-orders-count")) {
+                        document.getElementById("portal-orders-count").textContent = stats.total_orders || 0;
+                    }
+                }
+            } catch (e) {}
+        }
+
+        // ==================== CULT AI ASSISTANT ====================
+        function toggleAiChat() {
+            const chat = document.getElementById("ai-chat-window");
+            const isVisible = chat.style.display === "flex";
+            chat.style.display = isVisible ? "none" : "flex";
+            if (!isVisible) {
+                document.getElementById("ai-input").focus();
+            }
+        }
+
+        function clearAiChat() {
+            const body = document.getElementById("ai-chat-body");
+            body.innerHTML = `
+                <div class="ai-bubble ai-bubble-bot">
+                    ✦ <strong>COMM-LINK CLEARED</strong> ✦
+                    <br><br>
+                    Ready for your queries regarding <strong>NVB Cult</strong> drops, our <strong>company story</strong>, sizing guides, or owner commands.
+                </div>
+                <div class="ai-suggestions-row">
+                    <button class="ai-chip" onclick="sendAiPrompt('Tell me about the NVB company story and motto')">👑 Our Company Story</button>
+                    <button class="ai-chip" onclick="sendAiPrompt('What does the NVB logo symbolize?')">👁️ Logo Symbolism</button>
+                    <button class="ai-chip" onclick="sendAiPrompt('Tell me about 260 GSM heavyweight cotton')">👕 260 GSM Fabric</button>
+                    <button class="ai-chip" onclick="sendAiPrompt('What size should I choose for oversized t-shirts?')">📐 Sizing Guide</button>
+                    <button class="ai-chip" onclick="sendAiPrompt('Any discount coupon code?')">🏷️ Coupon 'VISION10'</button>
+                </div>
+                <div class="ai-typing-indicator" id="ai-typing-indicator">
+                    <span class="ai-typing-dot"></span>
+                    <span class="ai-typing-dot"></span>
+                    <span class="ai-typing-dot"></span>
+                </div>
+            `;
+        }
+
+        function sendAiPrompt(prompt) {
+            document.getElementById("ai-input").value = prompt;
+            submitAiMessage();
+        }
+
+        async function submitAiMessage() {
+            const input = document.getElementById("ai-input");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+            appendAiBubble(text, true);
+
+            const typing = document.getElementById("ai-typing-indicator");
+            typing.style.display = "flex";
+            const body = document.getElementById("ai-chat-body");
+            body.scrollTop = body.scrollHeight;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/ai-assistant`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: text })
+                });
+                const data = await res.json();
+                typing.style.display = "none";
+
+                let respContent = data.response || data.text || "Transmission interrupted.";
+                let cleanText = (respContent || "")
+                    .split('**').reduce((acc, part, idx) => acc + (idx % 2 === 1 ? `<strong>${part}</strong>` : part), '')
+                    .split('\\n').join('<br>');
+
+                let recsHtml = "";
+                if (data.recommended_products && data.recommended_products.length > 0) {
+                    recsHtml = `<div style="margin-top:10px; font-family:'Space Mono', monospace; font-size:11px; color:var(--gold-bright); font-weight:700;">RECOMMENDED DROPS:</div>`;
+                    data.recommended_products.slice(0, 2).forEach(p => {
+                        recsHtml += `
+                            <div class="ai-rec-card" onclick="openDetailsModal('${p.id}')">
+                                <img src="${p.image_url || '/static/placeholder.jpg'}" class="ai-rec-thumb" alt="">
+                                <div style="flex:1; overflow:hidden;">
+                                    <div style="font-weight:700; font-size:12px; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${p.title}</div>
+                                    <div style="font-family:'Space Mono', monospace; font-size:11px; color:var(--gold-bright); font-weight:700;">₹${p.price}</div>
+                                </div>
+                                <span style="font-family:'Space Mono', monospace; font-size:10px; background:var(--gold); color:#000000; font-weight:800; padding:2px 6px; border-radius:2px;">INSPECT</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                appendAiBubble(cleanText + (recsHtml ? `<div style="margin-top:10px; font-family:'Space Mono', monospace; font-size:10px; border-top:1px solid rgba(212, 175, 55, 0.4); padding-top:6px;">${recsHtml}</div>` : ''), false);
+            } catch (err) {
+                typing.style.display = "none";
+                appendAiBubble("Comm-link connection failed. Please verify local server is running.", false);
+            }
+        }
+
+        function appendAiBubble(htmlContent, isUser) {
+            const body = document.getElementById("ai-chat-body");
+            const typing = document.getElementById("ai-typing-indicator");
+            const bubble = document.createElement("div");
+            bubble.className = `ai-bubble ${isUser ? 'ai-bubble-user' : 'ai-bubble-bot'}`;
+            bubble.innerHTML = htmlContent;
+            body.insertBefore(bubble, typing);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        // ==================== TOAST NOTIFICATIONS ====================
+        function showToast(msg) {
+            const toast = document.getElementById("toast-msg");
+            toast.textContent = msg;
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+"""
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Successfully generated NVB Cult Black & Gold Store (Est. 2026) at {out_path} ({len(html)} chars)")
+
+if __name__ == "__main__":
+    generate_nvb_html()
